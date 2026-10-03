@@ -512,6 +512,87 @@ section{
   }
 }
 
+/* ---------- GIFT BALLOON EFFECT ---------- */
+
+.gift-balloon{
+  position:fixed;
+  bottom:90px;
+  width:34px;
+  height:44px;
+  border-radius:50%;
+  z-index:80;
+  pointer-events:none;
+  opacity:0;
+  animation:giftBalloonRise 3.8s ease-out forwards;
+}
+
+.gift-balloon::after{
+  content:"";
+  position:absolute;
+  width:1px;
+  height:65px;
+  background:rgba(255,255,255,.35);
+  left:50%;
+  top:42px;
+}
+
+@keyframes giftBalloonRise{
+
+  0%{
+    transform:translate(0,0) scale(.5);
+    opacity:0;
+  }
+
+  10%{
+    opacity:1;
+  }
+
+  45%{
+    transform:translate(var(--drift),-45vh)
+      rotate(8deg) scale(1);
+  }
+
+  100%{
+    transform:translate(calc(var(--drift) * 1.4),-115vh)
+      rotate(-8deg) scale(.8);
+    opacity:0;
+  }
+
+}
+
+.gift-sparkle{
+  position:fixed;
+  top:-15px;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#ffd6e8;
+  box-shadow:
+    0 0 6px #fff,
+    0 0 14px #ff8fc2;
+  z-index:85;
+  pointer-events:none;
+  animation:giftSparkleFall linear forwards;
+}
+
+@keyframes giftSparkleFall{
+
+  0%{
+    transform:translateY(0) scale(.5);
+    opacity:0;
+  }
+
+  10%{
+    opacity:1;
+  }
+
+  100%{
+    transform:translateY(110vh) rotate(720deg) scale(1.2);
+    opacity:0;
+  }
+
+}
+
 /* ---------- FINAL ---------- */
 
 .final{
@@ -943,6 +1024,102 @@ function createConfetti(amount = 40){
 }
 
 
+/* ---------- GIFT BALLOONS ---------- */
+
+function createGiftBalloons(){
+
+  const balloonCount = 9;
+
+  for(let i = 0; i < balloonCount; i++){
+
+    const balloon =
+      document.createElement("div");
+
+    balloon.className =
+      "gift-balloon";
+
+    balloon.style.left =
+      (42 + Math.random() * 16) + "vw";
+
+    balloon.style.setProperty(
+      "--drift",
+      ((Math.random() * 180) - 90) + "px"
+    );
+
+    balloon.style.animationDelay =
+      (Math.random() * 0.45) + "s";
+
+    const sizes = [
+      ["#ff79b3","#7d2450"],
+      ["#ff9bc6","#9e3168"],
+      ["#d96cff","#702b8d"],
+      ["#ffbfdc","#a82c65"]
+    ];
+
+    const pair =
+      sizes[Math.floor(Math.random() * sizes.length)];
+
+    balloon.style.background =
+      `linear-gradient(135deg,${pair[0]},${pair[1]})`;
+
+    document.body.appendChild(balloon);
+
+    setTimeout(() => {
+
+      balloon.remove();
+
+    }, 4500);
+
+  }
+
+}
+
+
+/* ---------- GIFT GLITTER ---------- */
+
+function createGiftGlitter(){
+
+  const sparkleCount = 75;
+
+  for(let i = 0; i < sparkleCount; i++){
+
+    const sparkle =
+      document.createElement("div");
+
+    sparkle.className =
+      "gift-sparkle";
+
+    sparkle.style.left =
+      Math.random() * 100 + "vw";
+
+    sparkle.style.animationDuration =
+      (2.2 + Math.random() * 2.8) + "s";
+
+    sparkle.style.animationDelay =
+      Math.random() * 1.5 + "s";
+
+    const size =
+      3 + Math.random() * 5;
+
+    sparkle.style.width =
+      size + "px";
+
+    sparkle.style.height =
+      size + "px";
+
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => {
+
+      sparkle.remove();
+
+    }, 6000);
+
+  }
+
+}
+
+
 /* ---------- GIFT BOX ---------- */
 
 const giftBox =
@@ -964,7 +1141,14 @@ giftBox.addEventListener("click", () => {
 
   birthdayReveal.classList.add("show");
 
+  /* Original confetti */
   createConfetti(60);
+
+  /* Balloons fly upward from the gift */
+  createGiftBalloons();
+
+  /* Glitter falls down */
+  createGiftGlitter();
 
   setTimeout(() => {
 
