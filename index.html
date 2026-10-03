@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#180914">
+<title>Tammi's 18th Birthday</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  min-height:100vh;
+  font-family:Georgia, "Times New Roman", serif;
+  color:#fff;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255,91,166,.18), transparent 30%),
+    linear-gradient(145deg,#09050a,#180914 45%,#2b0c1e);
+  overflow-x:hidden;
+}
+
+/* ---------- BACKGROUND ---------- */
+
+.bg-glow{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:0;
+}
+
+.glow{
+  position:absolute;
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  filter:blur(70px);
+  opacity:.25;
+  animation:floatGlow 8s ease-in-out infinite alternate;
+}
+
+.glow.one{
+  background:#ff4f9a;
+  top:5%;
+  left:-100px;
+}
+
+.glow.two{
+  background:#9b4dff;
+  bottom:5%;
+  right:-100px;
+  animation-delay:2s;
+}
+
+@keyframes floatGlow{
+  from{transform:translateY(-20px) scale(.9);}
+  to{transform:translateY(30px) scale(1.1);}
+}
+
+/* ---------- INTRO ---------- */
+
+#intro{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:25px;
+  background:
+    radial-gradient(circle at center,rgba(255,67,155,.15),transparent 45%),
+    #080509;
+  transition:opacity 1s ease, visibility 1s ease;
+}
+
+#intro.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+.intro-content{
+  max-width:650px;
+}
+
+.date{
+  font-size:13px;
+  letter-spacing:6px;
+  color:#ffb5d6;
+  margin-bottom:25px;
+}
+
+.intro-content h1{
+  font-size:clamp(38px,10vw,78px);
+  font-weight:400;
+  line-height:1.05;
+  margin-bottom:18px;
+}
+
+.intro-content h1 span{
+  color:#ff72ad;
+  text-shadow:0 0 25px rgba(255,90,165,.5);
+}
+
+.intro-text{
+  color:#d9c5d1;
+  font-size:16px;
+  margin-bottom:35px;
+  line-height:1.7;
+}
+
+.open-btn{
+  border:1px solid rgba(255,180,215,.5);
+  background:linear-gradient(135deg,#ff4f9a,#9e3168);
+  color:white;
+  padding:15px 28px;
+  border-radius:50px;
+  font-size:15px;
+  cursor:pointer;
+  box-shadow:0 10px 35px rgba(255,55,145,.25);
+  transition:.3s;
+}
+
+.open-btn:hover{
+  transform:translateY(-3px) scale(1.03);
+  box-shadow:0 15px 45px rgba(255,55,145,.4);
+}
+
+/* ---------- MAIN ---------- */
+
+#main{
+  position:relative;
+  z-index:1;
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity 1.2s ease, transform 1.2s ease;
+}
+
+#main.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+section{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:80px 20px;
+  position:relative;
+}
+
+.container{
+  width:100%;
+  max-width:1050px;
+  margin:auto;
+  text-align:center;
+}
+
+/* ---------- HERO ---------- */
+
+.hero-date{
+  letter-spacing:5px;
+  font-size:13px;
+  color:#ffb4d5;
+  margin-bottom:15px;
+}
+
+.hero h2{
+  font-size:clamp(48px,12vw,100px);
+  line-height:.95;
+  font-weight:400;
+}
+
+.hero h2 span{
+  display:block;
+  color:#ff70ad;
+  text-shadow:0 0 35px rgba(255,75,160,.45);
+}
+
+.subtitle{
+  margin-top:25px;
+  color:#d7c4ce;
+  font-size:16px;
+  letter-spacing:1px;
+}
+
+.scroll{
+  margin-top:55px;
+  font-size:12px;
+  letter-spacing:4px;
+  color:#a9919d;
+  animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(8px);}
+}
+
+/* ---------- MESSAGE ---------- */
+
+.section-label{
+  color:#ff8cba;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  font-size:11px;
+  margin-bottom:15px;
+}
+
+.section-title{
+  font-size:clamp(34px,7vw,58px);
+  font-weight:400;
+  margin-bottom:25px;
+}
+
+.message-card{
+  max-width:760px;
+  margin:auto;
+  padding:35px 25px;
+  border:1px solid rgba(255,180,215,.16);
+  border-radius:25px;
+  background:rgba(255,255,255,.035);
+  backdrop-filter:blur(12px);
+  box-shadow:0 20px 70px rgba(0,0,0,.25);
+}
+
+.message-card p{
+  color:#eadce3;
+  line-height:2;
+  font-size:16px;
+  margin-bottom:16px;
+}
+
+.dua{
+  color:#ffb8d8 !important;
+}
+
+/* ---------- CAKE ---------- */
+
+.cake-section{
+  overflow:hidden;
+}
+
+.cake-scene{
+  position:relative;
+  width:min(430px,92vw);
+  height:460px;
+  margin:25px auto 0;
+}
+
+.table{
+  position:absolute;
+  width:100%;
+  height:25px;
+  bottom:65px;
+  left:0;
+  border-radius:50%;
+  background:linear-gradient(#40182d,#170913);
+  box-shadow:0 10px 40px rgba(255,70,160,.2);
+}
+
+.cake{
+  position:absolute;
+  bottom:90px;
+  left:50%;
+  transform:translateX(-50%);
+  width:270px;
+}
+
+.layer{
+  height:65px;
+  border-radius:12px;
+  position:relative;
+  box-shadow:0 8px 20px rgba(0,0,0,.3);
+}
+
+.layer.bottom{
+  background:linear-gradient(90deg,#35101f,#7b244b,#35101f);
+  height:75px;
+}
+
+.layer.middle{
+  width:230px;
+  margin:auto;
+  background:linear-gradient(90deg,#4a132b,#9d3765,#4a132b);
+  height:65px;
+}
+
+.layer.top{
+  width:190px;
+  margin:auto;
+  background:linear-gradient(90deg,#591637,#b94678,#591637);
+  height:55px;
+  border-radius:50% 50% 12px 12px;
+}
+
+.frosting{
+  position:absolute;
+  top:42px;
+  left:0;
+  width:100%;
+  height:20px;
+  background:#ffd1e3;
+  border-radius:50%;
+  opacity:.9;
+}
+
+.name-on-cake{
+  position:absolute;
+  top:25px;
+  width:100%;
+  text-align:center;
+  font-family:cursive;
+  font-size:24px;
+  color:white;
+  text-shadow:0 2px 8px #000;
+  z-index:3;
+}
+
+.candles{
+  position:absolute;
+  top:-58px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:14px;
+}
+
+.candle{
+  width:15px;
+  height:55px;
+  background:linear-gradient(#ffd7e8,#d44f83);
+  border-radius:4px;
+  position:relative;
+}
+
+.flame{
+  position:absolute;
+  width:13px;
+  height:20px;
+  border-radius:50%;
+  background:#ffd15c;
+  top:-20px;
+  left:1px;
+  box-shadow:0 0 18px #ffb400;
+  animation:flicker .45s infinite alternate;
+}
+
+@keyframes flicker{
+  from{transform:scale(.8) rotate(-3deg);}
+  to{transform:scale(1.1) rotate(3deg);}
+}
+
+.eighteen{
+  position:absolute;
+  top:-105px;
+  left:50%;
+  transform:translateX(-50%);
+  white-space:nowrap;
+  font-size:17px;
+  letter-spacing:3px;
+  color:#ffd1e4;
+}
+
+.balloon{
+  position:absolute;
+  width:48px;
+  height:60px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#ff79b3,#7d2450);
+  box-shadow:0 0 20px rgba(255,90,170,.3);
+  animation:balloonFloat 4s ease-in-out infinite;
+}
+
+.balloon:after{
+  content:"";
+  position:absolute;
+  width:1px;
+  height:90px;
+  background:rgba(255,255,255,.3);
+  top:58px;
+  left:50%;
+}
+
+.balloon.b1{left:10px;top:50px;}
+.balloon.b2{right:20px;top:20px;animation-delay:1s;}
+.balloon.b3{left:55px;top:170px;animation-delay:1.5s;}
+.balloon.b4{right:70px;top:180px;animation-delay:.5s;}
+
+@keyframes balloonFloat{
+  0%,100%{transform:translateY(0) rotate(-3deg);}
+  50%{transform:translateY(-18px) rotate(4deg);}
+}
+
+/* ---------- GIFT ---------- */
+
+.gift-box{
+  width:160px;
+  height:130px;
+  margin:35px auto;
+  position:relative;
+  cursor:pointer;
+  transition:.5s;
+}
+
+.gift-base{
+  position:absolute;
+  bottom:0;
+  width:160px;
+  height:100px;
+  border-radius:8px;
+  background:linear-gradient(135deg,#a82c65,#50102f);
+}
+
+.gift-lid{
+  position:absolute;
+  top:10px;
+  left:-8px;
+  width:176px;
+  height:35px;
+  border-radius:7px;
+  background:linear-gradient(135deg,#d74788,#68153d);
+  transition:.7s;
+  z-index:3;
+}
+
+.ribbon-v{
+  position:absolute;
+  width:20px;
+  height:100%;
+  left:70px;
+  background:#ffd0e2;
+  opacity:.8;
+}
+
+.ribbon-h{
+  position:absolute;
+  width:100%;
+  height:16px;
+  top:38px;
+  background:#ffd0e2;
+  opacity:.8;
+}
+
+.gift-box.open .gift-lid{
+  transform:translateY(-70px) rotate(-8deg);
+}
+
+.gift-hint{
+  color:#bca8b3;
+  font-size:14px;
+}
+
+/* ---------- BIRTHDAY REVEAL ---------- */
+
+.birthday-reveal{
+  overflow:hidden;
+  max-height:0;
+  opacity:0;
+  transform:translateY(70px);
+  transition:
+    max-height:1.2s ease,
+    opacity:1s ease,
+    transform:1.2s cubic-bezier(.16,1,.3,1);
+}
+
+.birthday-reveal.show{
+  max-height:250px;
+  opacity:1;
+  transform:translateY(0);
+}
+
+.birthday-reveal h4{
+  font-family:Georgia, "Times New Roman", serif;
+  font-size:clamp(38px,10vw,78px);
+  line-height:1;
+  font-weight:400;
+  color:#ff78b1;
+  text-shadow:
+    0 0 12px rgba(255,80,160,.55),
+    0 0 35px rgba(255,80,160,.3);
+  animation:birthdayGlow 2s ease-in-out infinite alternate;
+}
+
+.birthday-reveal .small-date{
+  margin-top:18px;
+  font-size:12px;
+  letter-spacing:5px;
+  color:#ffd1e4;
+}
+
+@keyframes birthdayGlow{
+  from{
+    text-shadow:
+      0 0 10px rgba(255,80,160,.4),
+      0 0 20px rgba(255,80,160,.2);
+  }
+
+  to{
+    text-shadow:
+      0 0 18px rgba(255,100,180,.8),
+      0 0 45px rgba(255,80,160,.45);
+  }
+}
+
+/* ---------- FINAL ---------- */
+
+.final{
+  min-height:85vh;
+}
+
+.final h2{
+  font-size:clamp(45px,10vw,90px);
+  font-weight:400;
+}
+
+.final h2 span{
+  color:#ff75af;
+}
+
+.final-date{
+  margin-top:25px;
+  letter-spacing:6px;
+  color:#ffb4d5;
+}
+
+.final-dua{
+  max-width:650px;
+  margin:30px auto;
+  line-height:1.9;
+  color:#d8c6cf;
+}
+
+/* ---------- PARTICLES ---------- */
+
+.particle{
+  position:fixed;
+  top:-20px;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#ff9bc6;
+  pointer-events:none;
+  z-index:50;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(720deg);
+    opacity:0;
+  }
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media(max-width:700px){
+
+  section{
+    padding:70px 16px;
+  }
+
+  .cake{
+    width:220px;
+  }
+
+  .layer.bottom{
+    width:220px;
+  }
+
+  .layer.middle{
+    width:185px;
+  }
+
+  .layer.top{
+    width:155px;
+  }
+
+  .message-card{
+    padding:28px 20px;
+  }
+}
+
+@media(max-width:420px){
+
+  .cake-scene{
+    transform:scale(.9);
+    transform-origin:center;
+  }
+
+  .birthday-reveal h4{
+    font-size:42px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+<div class="bg-glow">
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+</div>
+
+
+<!-- INTRO -->
+<div id="intro">
+
+  <div class="intro-content">
+
+    <div class="date">
+      06 • 10 • 2026
+    </div>
+
+    <h1>
+      Something special<br>
+      for <span>Tammi</span>
+    </h1>
+
+    <p class="intro-text">
+      Someone made a little surprise for you...
+      <br>
+      Take a moment and open it. 🎁
+    </p>
+
+    <button class="open-btn" id="openBtn">
+      Open Your Surprise 🎁
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- MAIN WEBSITE -->
+<main id="main">
+
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="container">
+
+      <div class="hero-date">
+        06 OCTOBER 2026
+      </div>
+
+      <h2>
+        HAPPY<br>
+        <span>BIRTHDAY</span>
+      </h2>
+
+      <p class="subtitle">
+        To someone truly special — Tammi 🤍
+      </p>
+
+      <div class="scroll">
+        SCROLL TO DISCOVER ↓
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- MESSAGE -->
+  <section>
+
+    <div class="container">
+
+      <div class="section-label">
+        A little message
+      </div>
+
+      <h3 class="section-title">
+        For You, Tammi 🤍
+      </h3>
+
+      <div class="message-card">
+
+        <p>
+          শুভ জন্মদিন! 🤍 তোমার জীবনের প্রতিটি নতুন দিন
+          শান্তি, সুখ আর সুন্দর মুহূর্তে ভরে উঠুক।
+        </p>
+
+        <p>
+          সম্প্রতি যেসব বিষয় তোমার মনে কষ্ট দিয়েছে,
+          আল্লাহ সেসব কষ্ট ভুলে তোমাকে সুন্দরভাবে এগিয়ে
+          যাওয়ার শক্তি ও মানসিক শান্তি দান করুন।
+        </p>
+
+        <p>
+          তোমার মনের সব ভালো আশা ও স্বপ্ন পূরণ হোক,
+          আর তুমি যা চাও তা যেন তোমার জন্য কল্যাণকরভাবে
+          অর্জিত হয়।
+        </p>
+
+        <p>
+          আল্লাহ তোমার সামনে থাকা দিনগুলোকে আরও সুন্দর,
+          সফল ও আনন্দময় করে তুলুন।
+        </p>
+
+        <p class="dua">
+          দুনিয়ার জীবনে শান্তি ও সুখের পাশাপাশি আল্লাহ
+          যেন তোমাকে জান্নাতের সর্বোচ্চ স্থান দান করেন।
+          আমিন। 🤲🏻✨
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CAKE -->
+  <section class="cake-section">
+
+    <div class="container">
+
+      <div class="section-label">
+        The celebration
+      </div>
+
+      <h3 class="section-title">
+        Tammi's 18th Birthday 🎂
+      </h3>
+
+      <div class="cake-scene">
+
+        <div class="balloon b1"></div>
+        <div class="balloon b2"></div>
+        <div class="balloon b3"></div>
+        <div class="balloon b4"></div>
+
+        <div class="cake">
+
+          <div class="eighteen">
+            18 YEARS
+          </div>
+
+          <div class="candles">
+
+            <div class="candle">
+              <div class="flame"></div>
+            </div>
+
+            <div class="candle">
+              <div class="flame"></div>
+            </div>
+
+          </div>
+
+          <div class="layer top">
+
+            <div class="name-on-cake">
+              Tammi
+            </div>
+
+            <div class="frosting"></div>
+
+          </div>
+
+          <div class="layer middle"></div>
+
+          <div class="layer bottom"></div>
+
+        </div>
+
+        <div class="table"></div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- GIFT / FINAL SURPRISE -->
+  <section>
+
+    <div class="container">
+
+      <div class="section-label">
+        One more thing
+      </div>
+
+      <h3 class="section-title">
+        There's One More Surprise... 🎁
+      </h3>
+
+
+      <!-- GIFT BOX -->
+
+      <div class="gift-box" id="giftBox">
+
+        <div class="gift-lid"></div>
+
+        <div class="gift-base">
+
+          <div class="ribbon-v"></div>
+
+          <div class="ribbon-h"></div>
+
+        </div>
+
+      </div>
+
+
+      <p class="gift-hint" id="giftHint">
+        Tap the gift box to open it.
+      </p>
+
+
+      <!-- HAPPY BIRTHDAY REVEAL -->
+
+      <div class="birthday-reveal" id="birthdayReveal">
+
+        <h4>
+          HAPPY BIRTHDAY<br>
+          TAMMI 🤍
+        </h4>
+
+        <div class="small-date">
+          06 • 10 • 2026
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FINAL -->
+  <section class="final">
+
+    <div class="container">
+
+      <div class="section-label">
+        The end... or maybe a new beginning
+      </div>
+
+      <h2>
+        Happy Birthday,<br>
+        <span>Tammi 🤍</span>
+      </h2>
+
+      <p class="final-dua">
+        May Allah bless your new chapter with peace,
+        happiness, success and countless beautiful moments.
+        May every difficulty become easier, every good
+        intention find its way, and may your future be
+        filled with what is best for you.
+      </p>
+
+      <div class="final-date">
+        06 • 10 • 2026
+      </div>
+
+      <p style="margin-top:35px;color:#88727e;font-size:13px;">
+        Made with good wishes. ✨
+      </p>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<script>
+
+/* ---------- OPEN WEBSITE ---------- */
+
+const intro = document.getElementById("intro");
+const main = document.getElementById("main");
+const openBtn = document.getElementById("openBtn");
+
+openBtn.addEventListener("click", () => {
+
+  intro.classList.add("hide");
+
+  setTimeout(() => {
+
+    main.classList.add("show");
+
+    createConfetti(70);
+
+  }, 500);
+
+});
+
+
+/* ---------- CONFETTI ---------- */
+
+function createConfetti(amount = 40){
+
+  for(let i = 0; i < amount; i++){
+
+    const particle = document.createElement("div");
+
+    particle.className = "particle";
+
+    particle.style.left =
+      Math.random() * 100 + "vw";
+
+    particle.style.animationDuration =
+      (2.5 + Math.random() * 3) + "s";
+
+    particle.style.animationDelay =
+      Math.random() * 1.5 + "s";
+
+    const size =
+      4 + Math.random() * 7;
+
+    particle.style.width =
+      size + "px";
+
+    particle.style.height =
+      size + "px";
+
+    document.body.appendChild(particle);
+
+    setTimeout(() => {
+
+      particle.remove();
+
+    }, 6500);
+
+  }
+
+}
+
+
+/* ---------- GIFT BOX ---------- */
+
+const giftBox =
+  document.getElementById("giftBox");
+
+const giftHint =
+  document.getElementById("giftHint");
+
+const birthdayReveal =
+  document.getElementById("birthdayReveal");
+
+
+giftBox.addEventListener("click", () => {
+
+  giftBox.classList.add("open");
+
+  giftHint.textContent =
+    "A little surprise, just for you. 🤍";
+
+  birthdayReveal.classList.add("show");
+
+  createConfetti(60);
+
+  setTimeout(() => {
+
+    birthdayReveal.scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+
+  }, 350);
+
+});
+
+
+/* ---------- PERIODIC SPARKLES ---------- */
+
+setInterval(() => {
+
+  if(!intro.classList.contains("hide")){
+    return;
+  }
+
+  createConfetti(8);
+
+}, 7000);
+
+</script>
+
+</body>
+</html>
